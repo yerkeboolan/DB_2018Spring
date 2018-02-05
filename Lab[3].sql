@@ -16,15 +16,20 @@ SELECT sum(budget) FROM departments
 	FROM employees
 		GROUP BY department;
 
-SELECT departments.code FROM departments 
-	INNER JOIN employees
-		ON department = code
-			GROUP BY departments.code
-				HAVING COUNT(*) > 2;
+SELECT department, COUNT(*) FROM employees
+	GROUP BY department
+		HAVING COUNT(*) > 2;
 
 
+SELECT name, budget FROM departments 
+	ORDER BY budget DESC OFFSET 1 LIMIT 1;
 
 
+SELECT employees.name, employees.lastname FROM employees
+	WHERE employees.department = (
+		SELECT code FROM departments 
+			ORDER BY budget ASC LIMIT 1
+	);
 
 SELECT name FROM employees
 	UNION SELECT name FROM customers
@@ -34,7 +39,9 @@ SELECT budget, code FROM departments
 	WHERE budget > 60000
 		ORDER BY budget ASC, code DESC
 
-
+UPDATE departments SET budget = budget * 0.9
+	WHERE budget = (SELECT FROM departments ORDER BY budget ASC LIMIT 1) 
+		returning *;
 
 UPDATE employees SET department = 14 WHERE department = 77;
 
