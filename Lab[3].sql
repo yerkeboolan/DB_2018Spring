@@ -50,3 +50,8 @@ DELETE FROM employees
 
 DELETE FROM employees
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+UPDATE employees.department FROM employees SET department = (SELECT code FROM departments ORDER BY budget DESC LIMIT 1)
+	WHERE department = (SELECT code FROM departments ORDER BY budget ASC LIMIT 1);
