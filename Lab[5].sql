@@ -22,15 +22,15 @@ select sum(purch_amt) from orders;
 
 select avg(purch_amt) from orders;
 
-select count(*) from customers
+select count(*) from customers where customers.cust_name IS NOT NULL;
 
 select min(purch_amt) from orders;
 
 select all * from customers where cust_name like '%b';
 
-select all * from orders where customer_id = (Select customer_id from customers where city = 'New York');
+select all * from orders where customer_id IN (Select customer_id from customers where city = 'New York');
 
-select all * from customers where customer_id = (select customer_id from orders where purch_amt > 10);
+select all * from customers where customer_id IN (select customer_id from orders where purch_amt > 10);
 
 select sum(grade) from customers;
 
