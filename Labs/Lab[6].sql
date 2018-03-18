@@ -33,19 +33,28 @@ create table job_grades (
 );
 
 
-3) select employees.first_name, employees.last_name, departments.department_name, 
-	locations.city, locations.state_province from employees 
-	inner join (departments cross join locations) on department_id is not null;
+3) SELECT E.first_name,E.last_name, 
+   D.department_name, L.city, L.state_province
+     FROM employees E 
+      JOIN departments D  
+        ON E.department_id = D.department_id  
+          JOIN locations L
+           ON D.location_id = L.location_id;
 
 
-4) select employees.first_name, employees.last_name, employees.salary, job_grades.grade
-from employees left join job_grades  
+4) SELECT E.first_name, E.last_name, E.salary, J.grade_level
+ FROM employees E 
+   JOIN job_grades J
+     ON E.salary BETWEEN J.lowest_sal AND J.highest_sal;
 
 5) select t1.first_name, t1.last_name, t1.salary, t2.employee_id
 from employees as t1 inner join employees as t2 using (employee_salary) where employees.employee_id = 120  
 
-6) select employees.first_name, employees.manager_id from employees 
-left join employees on employees.manager_id = employees.employee_id
+6) SELECT E.first_name AS "Employee Name", 
+   M.first_name AS "Manager"
+     FROM employees E 
+       JOIN employees M
+         ON E.manager_id = M.employee_id;
 
 
 7) select employees.first_name, employees.last_name, departments.department_id, departments.department_name 
