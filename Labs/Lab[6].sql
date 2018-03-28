@@ -1,5 +1,3 @@
-create database lab6
-
 create table locations (
 	location_id serial primary key,
 	street_address varchar(25),

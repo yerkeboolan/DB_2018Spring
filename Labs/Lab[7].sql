@@ -7,4 +7,4 @@
 4) create index ind_substring on employess(substring(employess.name from 1 for 4);
 
 5) create index ind_join_employees on employess (salary)
-   create index ind_join_departments on departments (budget)
+   create index ind_join_departments on departments (budget);

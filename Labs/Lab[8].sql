@@ -5,6 +5,7 @@ city varchar(255),
 commission real
 );
 
+
 create table customers(
 customer_id integer PRIMARY KEY,
 cust_name varchar(255),
@@ -12,6 +13,7 @@ city varchar(255),
 grade integer,
 salesman_id integer REFERENCES salesman
 );
+
 
 create table orders(
 ord_no integer PRIMARY KEY,
